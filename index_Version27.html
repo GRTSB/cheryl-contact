@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Contact Card - Sacoor Brothers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --lagoon-green: #88A09F;
+    }
+    html, body {
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      background: #000;
+      font-family: 'Funnel Display', Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      width: 100vw;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+    }
+    .card {
+      width: 100vw;
+      max-width: 600px;
+      background: var(--lagoon-green);
+      border-radius: 36px;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.08);
+      overflow: hidden;
+      margin: 32px 0;
+      position: relative;
+      padding-top: 0;
+    }
+    .logo-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 48px;
+      padding-bottom: 34px;
+      background: var(--lagoon-green);
+    }
+    .logo-img {
+      width: 160px;
+      max-width: 60vw;
+      height: auto;
+      display: block;
+    }
+    .content {
+      padding: 38px 0 0 0;
+      position: relative;
+      z-index: 2;
+      background: #fff;
+      border-radius: 0 0 36px 36px;
+      font-family: 'Funnel Display', Arial, sans-serif;
+    }
+    .inner-content {
+      padding: 0 32px 0 32px;
+    }
+    .name {
+      font-size: 2em;
+      font-weight: 700;
+      color: var(--lagoon-green);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+    .position {
+      font-size: 1.2em;
+      color: var(--lagoon-green);
+      opacity: .8;
+      margin-bottom: 24px;
+      font-weight: 400;
+    }
+    .contacts {
+      margin-bottom: 34px;
+    }
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 12px;
+      font-size: 1.1em;
+    }
+    .contact-row:last-child { margin-bottom: 0; }
+    .contact-icon {
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      min-height: 28px;
+      max-width: 28px;
+      max-height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      box-sizing: border-box;
+      overflow: hidden;
+      border: 1px solid #e0e0e0;
+      padding: 0;
+    }
+    .contact-icon img {
+      width: 20px;
+      height: 20px;
+      display: block;
+      margin: auto;
+    }
+    .contact-link {
+      color: var(--lagoon-green);
+      text-decoration: none;
+      word-break: break-all;
+      transition: text-decoration 0.2s;
+    }
+    .contact-link:hover { text-decoration: underline; }
+
+    /* Company and address block full width, no curve, adjusted font */
+    .company-address-block {
+      background: var(--lagoon-green);
+      color: #fff;
+      width: 100%;
+      margin: 54px 0 0 0;
+      padding: 26px 32px 32px 32px;
+      text-align: center;
+      border-radius: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-sizing: border-box;
+    }
+    .company-address-block .company {
+      color: #fff;
+      margin: 0 0 7px 0;
+      font-size: 1.1em; /* Match website/contact font size */
+      font-weight: 400;  /* Regular, not bold */
+      letter-spacing: 1px;
+      text-align: center;
+    }
+    .company-address-block .company-details {
+      color: #fff;
+      opacity: 0.92;
+      margin: 0;
+      font-size: 0.94em; /* Slightly smaller than company name */
+      font-weight: 400;   /* Regular */
+      text-align: center;
+      white-space: pre-line;
+      font-family: 'Funnel Display', Arial, sans-serif;
+    }
+
+    /* MOBILE STYLES */
+    @media (max-width: 650px) {
+      .card {
+        max-width: 100vw;
+        width: 100vw;
+        margin: 0;
+        border-radius: 0;
+      }
+      .logo-wrapper {
+        padding-top: 40px;
+        padding-bottom: 38px;
+      }
+      .logo-img {
+        width: 110px;
+        max-width: 90vw;
+      }
+      .content {
+        padding: 24px 0 0 0;
+      }
+      .inner-content {
+        padding: 0 10px 0 18px;
+      }
+      .name {
+        font-size: 2.1em;
+        text-align: left;
+      }
+      .position {
+        text-align: left;
+      }
+      .contacts {
+        margin-bottom: 34px;
+      }
+      .contact-row {
+        justify-content: flex-start;
+      }
+      .company-address-block {
+        font-size: 1em;
+        padding: 22px 10px 28px 18px;
+        margin-top: 38px;
+        border-radius: 0;
+      }
+      .company-address-block .company-details {
+        margin-bottom: 0;
+        font-size: 0.92em;
+      }
+    }
+    /* Modal styles */
+    .modal-backdrop {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.35);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-backdrop.active {
+      display: flex;
+    }
+    .modal {
+      background: #fff;
+      border-radius: 18px;
+      max-width: 90vw;
+      min-width: 220px;
+      padding: 28px 20px 20px 20px;
+      text-align: center;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.14);
+      font-family: 'Funnel Display', Arial, sans-serif;
+      animation: popIn .2s cubic-bezier(.42,0,.58,1);
+    }
+    @keyframes popIn {
+      from { transform: scale(.95); opacity: 0.5;}
+      to { transform: scale(1); opacity: 1;}
+    }
+    .modal-title {
+      font-size: 1.2em;
+      color: var(--lagoon-green);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .modal-btns {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 18px;
+    }
+    .modal-btn {
+      padding: 8px 24px;
+      border-radius: 6px;
+      border: none;
+      font-size: 1em;
+      font-family: 'Funnel Display', Arial, sans-serif;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background .2s, color .2s;
+    }
+    .modal-btn.yes {
+      background: var(--lagoon-green);
+      color: #fff;
+      border: 1px solid var(--lagoon-green);
+    }
+    .modal-btn.no {
+      background: #fff;
+      color: var(--lagoon-green);
+      border: 1px solid var(--lagoon-green);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <!-- Logo as PNG -->
+      <div class="logo-wrapper">
+        <img
+          src="https://github.com/cheryllee1015/cheryl-contact/raw/7ee9de47a193c4ef1e2b65b492f355bd8a9f9ade/Web%20Logo%20(1).png"
+          alt="Sacoor Brothers Logo"
+          class="logo-img"
+          width="160"
+          height="60"
+          style="width:160px; height:auto; max-width:60vw;"
+        />
+      </div>
+      <div class="content">
+        <div class="inner-content">
+          <div class="name" id="contact-name">CHERYL LEE</div>
+          <div class="position" id="contact-position">Assistant Marketing Manager</div>
+          <div class="contacts">
+            <div class="contact-row">
+              <span class="contact-icon">
+                <img src="https://github.com/cheryllee1015/cheryl-contact/raw/7ee9de47a193c4ef1e2b65b492f355bd8a9f9ade/Mobile%20Icon.png" alt="Phone Icon" width="20" height="20" style="width:20px; height:20px;" />
+              </span>
+              <a class="contact-link" id="contact-phone" href="tel:+60103992157">+60103992157</a>
+            </div>
+            <div class="contact-row">
+              <span class="contact-icon">
+                <img src="https://github.com/cheryllee1015/cheryl-contact/raw/7ee9de47a193c4ef1e2b65b492f355bd8a9f9ade/Email%20Icon.png" alt="Email Icon" width="20" height="20" style="width:20px; height:20px;" />
+              </span>
+              <a class="contact-link" id="contact-email" href="mailto:cheryl.lee@my.sacoor.com">cheryl.lee@my.sacoor.com</a>
+            </div>
+            <div class="contact-row">
+              <span class="contact-icon">
+                <img src="https://github.com/cheryllee1015/cheryl-contact/raw/7ee9de47a193c4ef1e2b65b492f355bd8a9f9ade/Website%20Icon.png" alt="Website Icon" width="20" height="20" style="width:20px; height:20px;" />
+              </span>
+              <a class="contact-link" id="contact-website" href="https://my.sacoorbrothers.com" target="_blank">my.sacoorbrothers.com</a>
+            </div>
+          </div>
+        </div>
+        <div class="company-address-block">
+          <div class="company" id="company">GAMA RETAIL TRADING SDN BHD</div>
+          <div class="company-details" id="company-details">
+            (0986733X / 201201013216)<br>
+            Lot 8.05.00 & 8.06.00, Level 8, Pavilion Retail Office Block, 168, Jalan Bukit Bintang, 55100 Kuala Lumpur, Malaysia.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Save Contact Modal -->
+  <div class="modal-backdrop" id="contact-modal-backdrop">
+    <div class="modal">
+      <div class="modal-title">Save this contact?</div>
+      <div>This will add Cheryl Lee's contact details to your phone.</div>
+      <div class="modal-btns">
+        <button class="modal-btn yes" id="save-contact-yes">Yes</button>
+        <button class="modal-btn no" id="save-contact-no">No</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Contact info
+    const contact = {
+      name: "CHERYL LEE",
+      phone: "+60103992157",
+      email: "cheryl.lee@my.sacoor.com",
+      company: "GAMA RETAIL TRADING SDN BHD"
+    };
+
+    // Show save contact modal only on mobile
+    function isMobile() {
+      return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+    }
+
+    function showModal() {
+      document.getElementById('contact-modal-backdrop').classList.add('active');
+    }
+    function hideModal() {
+      document.getElementById('contact-modal-backdrop').classList.remove('active');
+    }
+
+    // vCard generator
+    function generateVCard(contact) {
+      return [
+        "BEGIN:VCARD",
+        "VERSION:3.0",
+        "FN:" + contact.name,
+        "ORG:" + contact.company,
+        "TEL;TYPE=CELL:" + contact.phone,
+        "EMAIL;TYPE=INTERNET:" + contact.email,
+        "END:VCARD"
+      ].join("\r\n");
+    }
+
+    function saveContact() {
+      const vcard = generateVCard(contact);
+      const blob = new Blob([vcard], { type: "text/vcard" });
+      const url = URL.createObjectURL(blob);
+
+      // Create a temporary link to download the vcf file
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${contact.name.replace(/\s+/g,'_')}.vcf`;
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => {
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }, 100);
+    }
+
+    document.getElementById('save-contact-yes').onclick = function() {
+      hideModal();
+      saveContact();
+    };
+    document.getElementById('save-contact-no').onclick = hideModal;
+
+    // Show modal only on mobile, on first load
+    window.addEventListener('DOMContentLoaded', function() {
+      if (isMobile()) {
+        setTimeout(showModal, 600);
+      }
+
+      // Join address line as single line on both desktop and mobile
+      document.getElementById('company-details').innerHTML =
+        `(0986733X / 201201013216)<br>Lot 8.05.00 & 8.06.00, Level 8, Pavilion Retail Office Block, 168, Jalan Bukit Bintang, 55100 Kuala Lumpur, Malaysia.`;
+    });
+
+    // Update these for other colleagues
+    document.getElementById('contact-name').textContent = contact.name;
+    document.getElementById('contact-position').textContent = "Assistant Marketing Manager"; // You may update this as needed
+    document.getElementById('contact-phone').textContent = contact.phone;
+    document.getElementById('contact-phone').href = "tel:" + contact.phone;
+    document.getElementById('contact-email').textContent = contact.email;
+    document.getElementById('contact-email').href = "mailto:" + contact.email;
+    document.getElementById('contact-website').textContent = "my.sacoorbrothers.com";
+    document.getElementById('contact-website').href = "https://my.sacoorbrothers.com";
+  </script>
+</body>
+</html>
